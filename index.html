@@ -91,7 +91,7 @@
 
         .vocab-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(4, 1fr); 
             gap: 25px;
             margin-top: 20px;
         }
@@ -117,7 +117,7 @@
 
         .image-wrapper {
             width: 100%;
-            height: 250px;
+            height: 200px;
             position: relative;
             border-radius: 12px;
             overflow: hidden;
@@ -133,7 +133,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 5rem;
+            font-size: 4rem;
             color: #fff;
             font-weight: bold;
             background: radial-gradient(circle, #34495e, #2c3e50);
@@ -182,7 +182,7 @@
         }
 
         .vocab-word {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--primary);
             display: none;
@@ -399,20 +399,20 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            min-width: 250px;
+            min-width: 230px;
         }
 
         .match-item {
             background: white;
             border: 2px solid #ccc;
-            height: 120px; 
+            height: 100px; 
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.6rem; 
+            font-size: 1.4rem; 
             color: #2c3e50;
         }
 
@@ -422,7 +422,7 @@
             background: var(--light);
             border: 2px dashed #bbb;
             border-radius: 10px;
-            height: 120px; 
+            height: 100px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -435,10 +435,10 @@
             background: #e8f5e9;
             font-weight: bold;
             color: #2e7d32;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
 
-        .match-img { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; }
+        .match-img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; }
 
         .activity-box {
             background: #f3f9fe;
@@ -609,7 +609,7 @@
         .dialogue-practice-frame { border: 2px dashed #cbd5e1; padding: 15px; border-radius: 12px; background: #fff; text-align: center; }
         .dialogue-hidden-pattern { font-size: 1.7rem; font-weight: 700; color: var(--primary); display: none; margin: 10px 0; }
 
-        @media(max-width:900px) {
+        @media(max-width:950px) {
             .vocab-grid { grid-template-columns: repeat(2, 1fr); }
             .comparison-wrapper { grid-template-columns: 1fr; }
             .three-column-pattern-grid { grid-template-columns: 1fr; }
@@ -712,6 +712,30 @@
                     </div>
                     <button class="audio-btn" onclick="playVocab('book')">📣 Pronounce</button>
                 </div>
+
+                <div class="vocab-card">
+                    <div class="image-wrapper" onclick="revealMysteryImage(this, 'btn-backpack')">
+                        <div class="mystery-cover">🔮</div>
+                        <img id="backpack-img" src="" alt="Backpack" class="real-img">
+                    </div>
+                    <div class="action-container">
+                        <button id="btn-backpack" class="reveal-name-btn" onclick="revealWordText('word-backpack')">🔓 Reveal Name</button>
+                        <div id="word-backpack" class="vocab-word">backpack</div>
+                    </div>
+                    <button class="audio-btn" onclick="playVocab('backpack')">📣 Pronounce</button>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="image-wrapper" onclick="revealMysteryImage(this, 'btn-wallet')">
+                        <div class="mystery-cover">🔮</div>
+                        <img id="wallet-img" src="" alt="Wallet" class="real-img">
+                    </div>
+                    <div class="action-container">
+                        <button id="btn-wallet" class="reveal-name-btn" onclick="revealWordText('word-wallet')">🔓 Reveal Name</button>
+                        <div id="word-wallet" class="vocab-word">wallet</div>
+                    </div>
+                    <button class="audio-btn" onclick="playVocab('wallet')">📣 Pronounce</button>
+                </div>
             </div>
 
             <div class="flow-control">
@@ -762,6 +786,8 @@
                     <option value="waterBottle">Water Bottle 🥛</option>
                     <option value="umbrella">Umbrella 🌂</option>
                     <option value="book">Book 📚</option>
+                    <option value="backpack">Backpack 🎒</option>
+                    <option value="wallet">Wallet 👛</option>
                 </select>
             </div>
 
@@ -809,7 +835,7 @@
             <div class="pattern-column-card center-response">
                 <div style="color:#b45309; font-weight: bold;">✨ Shared Response</div>
                 <div class="pattern-sentence" style="font-size: 1.9rem; color: var(--dark);">It's ...</div>
-                <div style="font-size:0.95rem; color:#64748b; margin-top:8px;">e.g., "It's my pencil." / "It's Leo's cap."</div>
+                <div style="font-size:0.95rem; color:#64748b; margin-top:8px;">e.g., "It's my pencil." / "It's Latrell's cap."</div>
             </div>
             
             <div class="pattern-column-card right-that">
@@ -831,7 +857,7 @@
 
             <div style="margin: 10px 0;">
                 <span style="font-size: 1.2rem; font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 6px 16px; border-radius: 20px;">
-                    🏷️ Owner Clue: <span id="builder-name-tag">Leo</span>
+                    🏷️ Owner Clue: <span id="builder-name-tag">Latrell</span>
                 </span>
             </div>
 
@@ -976,10 +1002,12 @@
         eraser: "eraser.png",
         waterBottle: "waterbottle.png",
         umbrella: "umbrella.png",
-        book: "book.png"
+        book: "book.png",
+        backpack: "backpack.png",
+        wallet: "wallet.png"
     };
 
-    const poolEasyNames = ["Leo", "Mia", "Max", "Amy", "Sam", "Zoe", "Tom", "Eva", "Ben", "Joy"];
+    const poolEasyNames = ["Latrell", "Leo", "Joyce", "Max", "Amy", "Sam", "Zoe", "Tom", "Eva", "Ben", "Joy"];
 
     let builderCurrentTarget = { item: '', distance: '', cleanWord: '', ownerType: '', ownerValue: '' };
     let currentMiniGameItem = null;
@@ -991,38 +1019,61 @@
     let STUDENT_IDENTIFICATION = { classGroup: "", studentNumber: "" };
     let STUDENT_ANSWERS = []; 
 
-    // Explicitly Balanced Pools to hit exactly 100 points:
-    // 6 Vocab questions * 2 pts = 12 pts
-    // 6 Listen & Choose questions * 8 pts = 48 pts
-    // 8 Arrange questions * 5 pts = 40 pts
-    // Total = 12 + 48 + 40 = 100 points
+    // --- SECTION 1: VOCABULARY POOL (8 Questions * 2 Pts = 16 Pts) ---
     const FIXED_VOCAB_POOL = [
-        { type: "Vocabulary", question: "What's this?", image: "umbrella", options: ["umbrella", "eraser", "water bottle", "pencil"], targetAnswer: "umbrella" },
-        { type: "Vocabulary", question: "What's this?", image: "waterBottle", options: ["book", "cap", "water bottle", "umbrella"], targetAnswer: "water bottle" },
-        { type: "Vocabulary", question: "What's this?", image: "eraser", options: ["pencil", "eraser", "cap", "book"], targetAnswer: "eraser" },
-        { type: "Vocabulary", question: "What's this?", image: "pencil", options: ["eraser", "umbrella", "water bottle", "pencil"], targetAnswer: "pencil" },
+        { type: "Vocabulary", question: "What's this?", image: "umbrella", options: ["umbrella", "eraser", "backpack", "pencil"], targetAnswer: "umbrella" },
+        { type: "Vocabulary", question: "What's this?", image: "waterBottle", options: ["book", "cap", "water bottle", "wallet"], targetAnswer: "water bottle" },
+        { type: "Vocabulary", question: "What's this?", image: "eraser", options: ["pencil", "eraser", "cap", "backpack"], targetAnswer: "eraser" },
+        { type: "Vocabulary", question: "What's this?", image: "pencil", options: ["wallet", "umbrella", "water bottle", "pencil"], targetAnswer: "pencil" },
         { type: "Vocabulary", question: "What's this?", image: "cap", options: ["cap", "book", "eraser", "umbrella"], targetAnswer: "cap" },
-        { type: "Vocabulary", question: "What's this?", image: "book", options: ["water bottle", "book", "cap", "pencil"], targetAnswer: "book" }
+        { type: "Vocabulary", question: "What's this?", image: "book", options: ["water bottle", "book", "backpack", "pencil"], targetAnswer: "book" },
+        { type: "Vocabulary", question: "What's this?", image: "backpack", options: ["wallet", "book", "backpack", "cap"], targetAnswer: "backpack" },
+        { type: "Vocabulary", question: "What's this?", image: "wallet", options: ["water bottle", "wallet", "eraser", "umbrella"], targetAnswer: "wallet" }
     ];
 
-    const FIXED_AUDIO_POOL = [
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose cap is this?", options: ["Whose cap is this?", "Whose cap is that?", "Whose cat is this?", "Who cap is this?"], targetAnswer: "Whose cap is this?" },
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Sam's eraser.", options: ["It's my eraser.", "It's Sam eraser.", "It's Sam's eraser.", "It's Sam's ruler."], targetAnswer: "It's Sam's eraser." },
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose umbrella is that?", options: ["Whose umbrella is this?", "Whose umbrella is that?", "Whose umbrella that is?", "Who's umbrella is that?"], targetAnswer: "Whose umbrella is that?" },
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's my water bottle.", options: ["It's my water bottle.", "It's Max's water bottle.", "This is my water bottle.", "It's my water bottle?"], targetAnswer: "It's my water bottle." },
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose book is this?", options: ["Whose book is this?", "Whose book is that?", "Whose box is this?", "Who book is this?"], targetAnswer: "Whose book is this?" },
-        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Leo's pencil.", options: ["It's my pencil.", "It's Leo pencil.", "It's Leo's pencil.", "It's Cleo's pencil."], targetAnswer: "It's Leo's pencil." }
+    // --- SECTION 2: EXPANDED LISTEN & CHOOSE QUESTION BANK (Draws 11 * 4 Pts = 44 Pts) ---
+    // Modified to feature challenging spelling traps for vocabulary items
+    const LARGE_AUDIO_BANK = [
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose cap is this?", options: ["Whose cap is this?", ["Whose cab is this?"], "Whose cape is this?", "Whose cp is this?"], targetAnswer: "Whose cap is this?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Latrell's eraser.", options: ["It's Latrell's eraser.", "It's Latrell's erraser.", "It's Latrell's iraser.", "It's Latrell's raser."], targetAnswer: "It's Latrell's eraser." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose umbrella is that?", options: ["Whose umbrella is that?", "Whose umbrela is that?", "Whose amberella is that?", "Whose umbrila is that?"], targetAnswer: "Whose umbrella is that?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's my water bottle.", options: ["It's my water bottle.", "It's my water botle.", "It's my walter bottle.", "It's my water battle."], targetAnswer: "It's my water bottle." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose book is this?", options: ["Whose book is this?", "Whose buke is this?", "Whose bock is this?", "Whose bok is this?"], targetAnswer: "Whose book is this?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Leo's pencil.", options: ["It's Leo's pencil.", "It's Leo's pensil.", "It's Leo's pencel.", "It's Leo's pincil."], targetAnswer: "It's Leo's pencil." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose backpack is this?", options: ["Whose backpack is this?", "Whose backpak is this?", "Whose bagpack is this?", "Whose packback is this?"], targetAnswer: "Whose backpack is this?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Joy's wallet.", options: ["It's Joy's wallet.", "It's Joy's walet.", "It's Joy's wollet.", "It's Joy's vallet."], targetAnswer: "It's Joy's wallet." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose wallet is that?", options: ["Whose wallet is that?", "Whose walet is that?", "Whose wollet is that?", "Whose vallet is that?"], targetAnswer: "Whose wallet is that?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Latrell's backpack.", options: ["It's Latrell's backpack.", "It's Latrell's backpak.", "It's Latrell's bagpack.", "It's Latrell's packback."], targetAnswer: "It's Latrell's backpack." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose pencil is that?", options: ["Whose pencil is that?", "Whose pensil is that?", "Whose pencel is that?", "Whose pincil is that?"], targetAnswer: "Whose pencil is that?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Joyce's water bottle.", options: ["It's Joyce's water bottle.", "It's Joyce's water botle.", "It's Joyce's walter bottle.", "It's Joyce's water battle."], targetAnswer: "It's Joyce's water bottle." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose water bottle is that?", options: ["Whose water bottle is that?", "Whose water botle is that?", "Whose walter bottle is that?", "Whose water battle is that?"], targetAnswer: "Whose water bottle is that?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's my umbrella.", options: ["It's my umbrella.", "It's my umbrela.", "It's my amberella.", "It's my umbrila."], targetAnswer: "It's my umbrella." },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "Whose eraser is this?", options: ["Whose eraser is this?", "Whose erraser is this?", "Whose iraser is this?", "Whose raser is this?"], targetAnswer: "Whose eraser is this?" },
+        { type: "Listen and Choose", question: "Audio - Listen and Choose", audioText: "It's Latrell's cap.", options: ["It's Latrell's cap.", "It's Latrell's cab.", "It's Latrell's cape.", "It's Latrell's cp."], targetAnswer: "It's Latrell's cap." }
     ];
 
-    const FIXED_ARRANGE_POOL = [
+    // --- SECTION 3: 20-QUESTION ARRANGE THE SENTENCE BANK (Draws 8 * 5 Pts = 40 Pts) ---
+    const LARGE_ARRANGE_BANK = [
         { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "pencil", "is", "this"], choices: [".", "?"], targetAnswer: ["Whose", "pencil", "is", "this"], targetPunc: "?" },
         { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["That", "is", "Amy's", "umbrella"], choices: [".", "?"], targetAnswer: ["That", "is", "Amy's", "umbrella"], targetPunc: "." },
-        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "my", "cap"], choices: [".", "?"], targetAnswer: ["It's", "my", "cap"], targetPunc: "." },
-        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "book", "is", "that"], choices: [".", "?"], targetAnswer: ["Whose", "book", "is", "that"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "my", "backpack"], choices: [".", "?"], targetAnswer: ["It's", "my", "backpack"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "wallet", "is", "that"], choices: [".", "?"], targetAnswer: ["Whose", "wallet", "is", "that"], targetPunc: "?" },
         { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It", "is", "Zoe's", "eraser"], choices: [".", "?"], targetAnswer: ["It", "is", "Zoe's", "eraser"], targetPunc: "." },
         { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "water", "bottle", "is", "this"], choices: [".", "?"], targetAnswer: ["Whose", "water", "bottle", "is", "this"], targetPunc: "?" },
         { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["This", "is", "Sam's", "book"], choices: [".", "?"], targetAnswer: ["This", "is", "Sam's", "book"], targetPunc: "." },
-        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "Mia's", "umbrella"], choices: [".", "?"], targetAnswer: ["It's", "Mia's", "umbrella"], targetPunc: "." }
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "Joyce's", "wallet"], choices: [".", "?"], targetAnswer: ["It's", "Joyce's", "wallet"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "cap", "is", "this"], choices: [".", "?"], targetAnswer: ["Whose", "cap", "is", "this"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "Latrell's", "backpack"], choices: [".", "?"], targetAnswer: ["It's", "Latrell's", "backpack"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "umbrella", "is", "that"], choices: [".", "?"], targetAnswer: ["Whose", "umbrella", "is", "that"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["This", "is", "my", "water", "bottle"], choices: [".", "?"], targetAnswer: ["This", "is", "my", "water", "bottle"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It", "is", "Max's", "pencil"], choices: [".", "?"], targetAnswer: ["It", "is", "Max's", "pencil"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "book", "is", "that"], choices: [".", "?"], targetAnswer: ["Whose", "book", "is", "that"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["That", "is", "Latrell's", "cap"], choices: [".", "?"], targetAnswer: ["That", "is", "Latrell's", "cap"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "Ben's", "water", "bottle"], choices: [".", "?"], targetAnswer: ["It's", "Ben's", "water", "bottle"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "eraser", "is", "this"], choices: [".", "?"], targetAnswer: ["Whose", "eraser", "is", "this"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["This", "is", "Eva's", "wallet"], choices: [".", "?"], targetAnswer: ["This", "is", "Eva's", "wallet"], targetPunc: "." },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["Whose", "backpack", "is", "that"], choices: [".", "?"], targetAnswer: ["Whose", "backpack", "is", "that"], targetPunc: "?" },
+        { type: "Arrange", question: "Arrange the words and pick the correct punctuation sign.", words: ["It's", "my", "umbrella"], choices: [".", "?"], targetAnswer: ["It's", "my", "umbrella"], targetPunc: "." }
     ];
 
     window.addEventListener("DOMContentLoaded", () => {
@@ -1032,6 +1083,8 @@
         document.getElementById("water-img").src = myImages.waterBottle;
         document.getElementById("umbrella-img").src = myImages.umbrella;
         document.getElementById("book-img").src = myImages.book;
+        document.getElementById("backpack-img").src = myImages.backpack;
+        document.getElementById("wallet-img").src = myImages.wallet;
         
         generateNumbersForClass();
         syncWorksheetStudentNumbers();
@@ -1110,6 +1163,11 @@
         }
     }
 
+    // Context-safe string preparation for inline JS handlers
+    function escapeString(str) {
+        return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
     function playCorrectChime() {
         try {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -1169,7 +1227,11 @@
         { itemKey: 'cap', distance: 'near', text: "The cap is sitting right on top of your head.", answer: 'this cap' },
         { itemKey: 'cap', distance: 'far', text: "The cap is blown away by the wind across the street.", answer: 'that cap' },
         { itemKey: 'pencil', distance: 'near', text: "The pencil is resting right behind your ear.", answer: 'this pencil' },
-        { itemKey: 'pencil', distance: 'far', text: "The pencil rolled far across the room under the bookshelf.", answer: 'that pencil' }
+        { itemKey: 'pencil', distance: 'far', text: "The pencil rolled far across the room under the bookshelf.", answer: 'that pencil' },
+        { itemKey: 'backpack', distance: 'near', text: "The backpack is strapped tight onto your shoulders.", answer: 'this backpack' },
+        { itemKey: 'backpack', distance: 'far', text: "The backpack was left all the way back inside the school bus.", answer: 'that backpack' },
+        { itemKey: 'wallet', distance: 'near', text: "The wallet is tucked safely inside your front pocket.", answer: 'this wallet' },
+        { itemKey: 'wallet', distance: 'far', text: "The wallet fell out onto the park bench over there.", answer: 'that wallet' }
     ];
 
     function loadStaticComparison() {
@@ -1332,11 +1394,13 @@
 
         const sourceData = [
             { word: 'cap', label: 'cap' }, { word: 'pencil', label: 'pencil' }, { word: 'eraser', label: 'eraser' },
-            { word: 'water bottle', label: 'water bottle' }, { word: 'umbrella', label: 'umbrella' }, { word: 'book', label: 'book' }
+            { word: 'water bottle', label: 'water bottle' }, { word: 'umbrella', label: 'umbrella' }, { word: 'book', label: 'book' },
+            { word: 'backpack', label: 'backpack' }, { word: 'wallet', label: 'wallet' }
         ];
         const targetData = [
             { match: 'cap', img: myImages.cap }, { match: 'pencil', img: myImages.pencil }, { match: 'eraser', img: myImages.eraser },
-            { match: 'water bottle', img: myImages.waterBottle }, { match: 'umbrella', img: myImages.umbrella }, { match: 'book', img: myImages.book }
+            { match: 'water bottle', img: myImages.waterBottle }, { match: 'umbrella', img: myImages.umbrella }, { match: 'book', img: myImages.book },
+            { match: 'backpack', img: myImages.backpack }, { match: 'wallet', img: myImages.wallet }
         ];
 
         const shuffledSources = shuffleArray(sourceData);
@@ -1356,23 +1420,25 @@
         });
     }
 
-    // --- WORKSHEET CORE ENGINE WITH UNIQUE SHUFFLING ---
+    // --- WORKSHEET SHUFFLING ENGINE WITH VARIABLE RANDOMIZED SELECTION ---
     function initializeStudentQuizSession() {
         STUDENT_IDENTIFICATION.classGroup = document.getElementById("ws-class-picker").value;
         STUDENT_IDENTIFICATION.studentNumber = document.getElementById("ws-student-picker").value;
         document.getElementById("ws-header-student-tag").innerText = `Class ${STUDENT_IDENTIFICATION.classGroup} - Student #${STUDENT_IDENTIFICATION.studentNumber}`;
         
-        // Deep clone options array inside each question to safely shuffle them independently per login session
+        // 1. Shuffling and isolating exact item counts per blueprint specifications
         let randomizedVocab = FIXED_VOCAB_POOL.map(q => ({...q, options: shuffleArray(q.options)}));
-        let randomizedAudio = FIXED_AUDIO_POOL.map(q => ({...q, options: shuffleArray(q.options)}));
-        let randomizedArrange = FIXED_ARRANGE_POOL.map(q => ({...q, choices: shuffleArray(q.choices)}));
+        randomizedVocab = shuffleArray(randomizedVocab); // Total 8 items
 
-        // Shuffle the list of question items within each distinct section pool
-        randomizedVocab = shuffleArray(randomizedVocab);
-        randomizedAudio = shuffleArray(randomizedAudio);
-        randomizedArrange = shuffleArray(randomizedArrange);
+        // Draws 11 randomized entries out of the multi-choice Listen and Choose bank
+        let structuralAudioPool = shuffleArray(LARGE_AUDIO_BANK).slice(0, 11);
+        let randomizedAudio = structuralAudioPool.map(q => ({...q, options: shuffleArray(q.options)}));
 
-        // Combine into the master sequence template
+        // Draws 8 randomized entries out of the 20 total Arrange the Sentence bank options
+        let structuralArrangePool = shuffleArray(LARGE_ARRANGE_BANK).slice(0, 8);
+        let randomizedArrange = structuralArrangePool.map(q => ({...q, choices: shuffleArray(q.choices)}));
+
+        // Combine standard pools (Total 27 questions: 8 + 11 + 8)
         ACTIVE_EXAM_SET = [...randomizedVocab, ...randomizedAudio, ...randomizedArrange];
         CURRENT_QUESTION_INDEX = 0; 
         
@@ -1420,7 +1486,7 @@
                 let checked = STUDENT_ANSWERS[idx] === opt ? "checked" : "";
                 layoutHTML += `
                     <label class="ws-radio-card-label">
-                        <input type="radio" name="ws-quiz-opt" value="${opt}" ${checked} onclick="saveMCQSelection('${opt.replace(/'/g, "\\'")}')">
+                        <input type="radio" name="ws-quiz-opt" value="${escapeString(opt)}" ${checked} onclick="saveMCQSelection('${escapeString(opt)}')">
                         ${opt}
                     </label>
                 `;
@@ -1429,14 +1495,14 @@
         } 
         else if (q.type === "Listen and Choose") {
             layoutHTML += `
-                <button class="ws-audio-trigger-btn" onclick="playVocab('${q.audioText.replace(/'/g, "\\'")}')">🔊 Listen to Audio</button>
+                <button class="ws-audio-trigger-btn" onclick="playVocab('${escapeString(q.audioText)}')">🔊 Listen to Audio</button>
                 <div class="ws-mcq-options-container" style="margin-top: 15px;">
             `;
             q.options.forEach(opt => {
                 let checked = STUDENT_ANSWERS[idx] === opt ? "checked" : "";
                 layoutHTML += `
                     <label class="ws-radio-card-label">
-                        <input type="radio" name="ws-quiz-opt" value="${opt}" ${checked} onclick="saveMCQSelection('${opt.replace(/'/g, "\\'")}')">
+                        <input type="radio" name="ws-quiz-opt" value="${escapeString(opt)}" ${checked} onclick="saveMCQSelection('${escapeString(opt)}')">
                         ${opt}
                     </label>
                 `;
@@ -1537,6 +1603,21 @@
     }
 
     function advanceWorksheetFlow() {
+        let currentAns = STUDENT_ANSWERS[CURRENT_QUESTION_INDEX];
+        let qType = ACTIVE_EXAM_SET[CURRENT_QUESTION_INDEX].type;
+
+        if (qType === "Arrange") {
+            if (!currentAns || currentAns.words.length === 0 || !currentAns.punctuation) {
+                alert("Please arrange the words and select a punctuation mark before moving on!");
+                return;
+            }
+        } else {
+            if (!currentAns) {
+                alert("Please select an option before moving on!");
+                return;
+            }
+        }
+        
         CURRENT_QUESTION_INDEX++;
         renderActiveWorksheetQuestion();
     }
@@ -1553,12 +1634,12 @@
             
             if (q.type === "Vocabulary") {
                 if (studentSelection === q.targetAnswer) {
-                    totalCalculatedPoints += 2;
+                    totalCalculatedPoints += 2.0; 
                 }
             } 
             else if (q.type === "Listen and Choose") {
                 if (studentSelection === q.targetAnswer) {
-                    totalCalculatedPoints += 8;
+                    totalCalculatedPoints += 4.0; 
                 }
             } 
             else if (q.type === "Arrange") {
@@ -1577,10 +1658,12 @@
                 }
                 
                 if (isSentenceCorrect && config.punctuation === q.targetPunc) {
-                    totalCalculatedPoints += 5;
+                    totalCalculatedPoints += 5.0; 
                 }
             }
         });
+
+        totalCalculatedPoints = Math.round(totalCalculatedPoints);
 
         document.getElementById("ws-summary-feedback").innerHTML = `
             <div style="font-size: 1.4rem; color: #1e3a8a; font-weight: bold; line-height: 1.6; padding: 20px; background: #eff6ff; border-radius: 12px; border: 2px solid #bfdbfe;">
